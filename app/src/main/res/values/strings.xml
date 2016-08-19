@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LunabeeTest</string>
+    <string name="grid_button_item">grid</string>
+    <string name="line_button_item">linear</string>
+
+    <string name="client_id">97d4344126dcf4be7a0e5e0d5db34c14f71f9965ae8037a80f19f48221481650</string>
+    <string name="api_url">https://api.unsplash.com/photos/?client_id=97d4344126dcf4be7a0e5e0d5db34c14f71f9965ae8037a80f19f48221481650</string>
+</resources>
