@@ -10,6 +10,7 @@ import com.perso.lunabeetest.R;
 import com.perso.lunabeetest.bean.UnsplashCard;
 import com.perso.lunabeetest.holder.LoadingViewHolder;
 import com.perso.lunabeetest.holder.ViewHolder;
+import com.perso.lunabeetest.listener.OnClickReceiverListener;
 import com.perso.lunabeetest.listener.OnLoadMoreListener;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final int VIEW_TYPE_LOADING = 1;
 
     private OnLoadMoreListener mOnLoadMoreListener;
+    private OnClickReceiverListener onClickReceiverListener;
 
     private boolean isLoading;
     private int visibleThreshold = 5;
@@ -77,7 +79,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (holder instanceof ViewHolder) {
             UnsplashCard card = list.get(position);
             ViewHolder myViewHolder = (ViewHolder) holder;
-            myViewHolder.bind(myViewHolder.itemView.getContext(),card);
+            myViewHolder.bind(myViewHolder.itemView.getContext(),card, onClickReceiverListener);
         } else if (holder instanceof LoadingViewHolder) {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);
@@ -86,6 +88,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
         this.mOnLoadMoreListener = mOnLoadMoreListener;
+    }
+
+    public void setOnClickReceiverListener(OnClickReceiverListener mOnClickListener){
+        this.onClickReceiverListener = mOnClickListener;
     }
 
     public void setLoaded() {

@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.perso.lunabeetest.R;
 import com.perso.lunabeetest.bean.UnsplashCard;
+import com.perso.lunabeetest.listener.OnClickReceiverListener;
 
 /**
  * Created by arnaud on 16/08/16.
@@ -24,6 +25,7 @@ public class ViewHolder extends RecyclerView.ViewHolder{
     private ImageView imageView;
     private ProgressBar progressBar;
 
+
     public ViewHolder(View itemView) {
         super(itemView);
 
@@ -33,9 +35,15 @@ public class ViewHolder extends RecyclerView.ViewHolder{
     }
 
     //puis ajouter une fonction pour remplir la cellule en fonction d'un MyObject
-    public void bind(Context context, UnsplashCard card){
-        authorTV.setText(card.getAuthor());
+    public void bind(Context context, final UnsplashCard card, final OnClickReceiverListener listener){
 
+        authorTV.setText(card.getAuthor());
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClicked(card);
+            }
+        });
         Glide.with(context)
                 .load(card.getImageUrl())
                 .listener(new RequestListener<String, GlideDrawable>() {
